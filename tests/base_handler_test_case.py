@@ -31,6 +31,8 @@ class BaseHandlerTestCase(AsyncHTTPTestCase):
     def tearDown(self):
         self.io_loop.run_sync(self.async_teardown)
         self.motor_client.close()
+        del self.database
+        del self.motor_client
         super().tearDown()
 
     async def async_fetch(self, path):
